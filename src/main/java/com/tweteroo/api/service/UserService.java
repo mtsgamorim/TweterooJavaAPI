@@ -15,6 +15,5 @@ public class UserService {
 
     public void create(UserDTO dto) {
         repository.save(new TweeteroUser(dto));
-        System.out.println(repository.count());
     }
 }
