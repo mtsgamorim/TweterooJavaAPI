@@ -8,9 +8,6 @@ public record TweetDTO(
     String username, 
 
     @NotBlank
-    String avatar, 
-
-    @NotBlank
     String text) {
     
 }

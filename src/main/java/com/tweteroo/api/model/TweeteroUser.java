@@ -13,9 +13,9 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @NoArgsConstructor
-public class User {
+public class TweeteroUser {
 
-    public User(UserDTO data) {
+    public TweeteroUser(UserDTO data) {
         this.avatar = data.avatar();
         this.username = data.username();
     }
@@ -24,7 +24,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(length = 100, nullable = false)
+    @Column(length = 100, nullable = false, unique = true)
     private String username;
 
     @Column(length = 500, nullable = false)
