@@ -4,7 +4,6 @@ import java.util.Optional;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -42,5 +41,9 @@ public class TweetService {
 
     public List<Tweet> getTweets(Pageable page) {
         return tweetRepository.findAll(page).getContent();
+    }
+
+    public List<Tweet> getTweetsByUsername(String username) {
+        return tweetRepository.findAllByUsername(username);
     }
 }

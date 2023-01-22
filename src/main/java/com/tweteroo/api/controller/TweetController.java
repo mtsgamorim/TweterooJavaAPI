@@ -1,9 +1,9 @@
 package com.tweteroo.api.controller;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -37,9 +37,13 @@ public class TweetController {
 
     @GetMapping("/tweets")
     public List<Tweet> list(@PageableDefault(sort = "id", direction = Sort.Direction.DESC  ,page = 0, size = 5 ) Pageable page) {
-       List<Tweet> tweets = service.getTweets(page);
-       return tweets;
+       return service.getTweets(page);
     }
 
-    
+    @GetMapping("/tweets/{username}")
+    public List<Tweet> listByUsername(@PathVariable String username){
+        List<Tweet> tweets = service.getTweetsByUsername(username);
+        Collections.reverse(tweets);
+        return tweets;
+    }
 }
