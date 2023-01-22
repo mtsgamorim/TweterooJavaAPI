@@ -1,5 +1,6 @@
 package com.tweteroo.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tweteroo.api.dto.TweetDTO;
 
 import jakarta.persistence.Column;
@@ -24,6 +25,7 @@ public class Tweet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonIgnore
     private Long id;
 
     @Column(length = 100, nullable = false)
