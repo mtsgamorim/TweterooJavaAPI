@@ -1,6 +1,14 @@
 package com.tweteroo.api.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,16 +20,23 @@ import com.tweteroo.api.service.TweetService;
 
 import jakarta.validation.Valid;
 
+@CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/tweets")
+@RequestMapping("/api")
 public class TweetController {
     @Autowired
     private TweetService service;
 
-    @PostMapping
+    @PostMapping("/tweets")
     public void create(@RequestBody @Valid TweetDTO req) {
         System.out.println(req);
         Tweet tweet = new Tweet(req);
         service.create(tweet); 
+    }
+
+    @GetMapping("/tweets")
+    public List<Tweet> list(@PageableDefault(sort = "id", direction = Sort.Direction.DESC  ,page = 0, size = 5 ) Pageable page) {
+       List<Tweet> tweets = service.getTweets(page);
+       return tweets;
     }
 }

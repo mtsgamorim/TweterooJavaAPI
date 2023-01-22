@@ -14,13 +14,13 @@ import jakarta.validation.Valid;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("api/auth/sign-up")
+@RequestMapping("api/auth")
 public class UserController {
     
     @Autowired
     private UserService service;
 
-    @PostMapping
+    @PostMapping("/sign-up")
     public void create(@RequestBody @Valid UserDTO req) {
         service.create(req);
     }
