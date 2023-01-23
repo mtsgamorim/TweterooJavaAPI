@@ -21,7 +21,8 @@ public class UserController {
     private UserService service;
 
     @PostMapping("/sign-up")
-    public void create(@RequestBody @Valid UserDTO req) {
+    public String create(@RequestBody @Valid UserDTO req) {
         service.create(req);
+        return "OK";
     }
 }

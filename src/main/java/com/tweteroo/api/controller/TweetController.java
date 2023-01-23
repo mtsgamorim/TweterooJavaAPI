@@ -29,10 +29,11 @@ public class TweetController {
     private TweetService service;
 
     @PostMapping("/tweets")
-    public void create(@RequestBody @Valid TweetDTO req) {
+    public String create(@RequestBody @Valid TweetDTO req) {
         System.out.println(req);
         Tweet tweet = new Tweet(req);
         service.create(tweet); 
+        return "OK";
     }
 
     @GetMapping("/tweets")
